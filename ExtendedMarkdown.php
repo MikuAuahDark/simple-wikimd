@@ -77,7 +77,7 @@ class ExtendedMarkdown extends \Parsedown
 		$target_slug = $original_slug;
 		$i = 1;
 
-		while (array_key_exists($original_slug, $this->used_slug))
+		while (array_key_exists($target_slug, $this->used_slug))
 		{
 			$i++;
 			$target_slug = "$original_slug-$i";
@@ -87,37 +87,20 @@ class ExtendedMarkdown extends \Parsedown
 		return $target_slug;
 	}
 
-	private static function setBlockAttributeID(array $Block, string $id)
+	private static function setBlockAttributeID(array &$Block, string $id)
 	{
 		if (!isset($Block['element']['attributes']))
 			$Block['element']['attributes'] = [];
 
 		$Block['element']['attributes']['id'] = $id;
+		fwrite(STDERR, 'setid ' . $Block['element']['attributes']['id'] . "\n");
 	}
 
-	private function cleanInlineName(array $Block)
+	private function setupTOC(&$Block)
 	{
-		if (!isset($Block['element']['handler']))
-			return $Block['element']['text'];
-
-		$method = $Block['element']['handler']['function'];
-		$elems = $this->$method($Block['element']['handler']['argument']);
-		$rawtext = [];
-
-		foreach($elems as $elem)
-		{
-			if (isset($elem['extent']))
-				$rawtext[] = strval($elem['extent']);
-			elseif (isset($elem['element']['text']))
-				$rawtext[] = strval($elem['text']);
-		}
-
-		return implode($rawtext);
-	}
-
-	private function setupTOC($Block)
-	{
-		$raw = $this->cleanInlineName($Block);
+		fwrite(STDERR, "setup TOC\n");
+		var_dump($Block);
+		$raw = $Block['element']['handler']['argument'];
 		$slug = $this->getSlug($raw);
 		self::setBlockAttributeID($Block, $slug);
 		$toc[] = [$raw, $slug, intval(substr($Block['element']['name'], 1))];

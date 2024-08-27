@@ -2,6 +2,7 @@
 
 // The root path of this config.php
 define('ROOT_DIR', realpath(dirname(__FILE__)));
+assert(ROOT_DIR, new Exception('fatal error ROOT_DIR is false'));
 
 // Where the Markdown contents are located
 define('CONTENT_DIR', ROOT_DIR . '/content');
