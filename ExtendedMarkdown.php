@@ -93,13 +93,10 @@ class ExtendedMarkdown extends \Parsedown
 			$Block['element']['attributes'] = [];
 
 		$Block['element']['attributes']['id'] = $id;
-		fwrite(STDERR, 'setid ' . $Block['element']['attributes']['id'] . "\n");
 	}
 
 	private function setupTOC(&$Block)
 	{
-		fwrite(STDERR, "setup TOC\n");
-		var_dump($Block);
 		$raw = $Block['element']['handler']['argument'];
 		$slug = $this->getSlug($raw);
 		self::setBlockAttributeID($Block, $slug);

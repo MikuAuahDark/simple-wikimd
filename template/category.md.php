@@ -1,6 +1,6 @@
 <?php
 $current = category_get_current();
-$pages = category_list_pages(CONTENT_DIR, $current);
+$pages = category_list_pages($current);
 ?>
 Category of <?=$current;?>
 

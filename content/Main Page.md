@@ -26,8 +26,9 @@ Syntax Extensions
 -----
 
 In addition to CommonMark, this wiki additionally support these syntax:
-* `[[]]` to refer to another wiki page. The `a` HTML tag will have attribute `does-not-exist` if the page doesn't exist.
-  Example: [[Main Page]], or [[Main Page|main page with different text]].
+* `[[]]` to refer to another wiki page. The `a` HTML tag will have attribute `does-not-exist` if the page doesn't
+  exist. Example: [[Main Page]], or [[Main Page|main page with different text]] (it won't render properly if viewed
+  from GitHub).
 
 License
 -----

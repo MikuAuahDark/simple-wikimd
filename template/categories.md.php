@@ -1,5 +1,5 @@
 <?php
-$categories = category_list_all(CONTENT_DIR);
+$categories = category_list_all();
 ?>
 Category List
 =====
